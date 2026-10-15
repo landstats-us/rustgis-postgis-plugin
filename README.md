@@ -7,6 +7,8 @@ vector layer, with its attribute table, symbology, selection and geoprocessing.
 plugin:postgis/add-table {"table": "public.counties", "connection": "service=mydb"}
 ```
 
+![The PostGIS plugin in RustGIS: the Set PostGIS Source tool, and the county layer it added from PostgreSQL with a feature pop-up](docs/screenshot.png)
+
 > RustGIS's development branch has PostGIS built in (**Home › Add Data › Database…**,
 > `layer.addDatabase`), but RustGIS 0.2.0 doesn't. This plugin fills the gap until that
 > ships, and it keeps working afterwards.
