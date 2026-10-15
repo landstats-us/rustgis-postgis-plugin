@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "description": "Add a PostgreSQL/PostGIS table to the map as a vector layer, read through DuckDB's postgres extension. Needs DuckDB 1.5 or later.",
   "author": "Travis Webb",
+  "homepage": "https://github.com/landstats-us/rustgis-postgis-plugin",
   "license": "MIT",
   "entry": "plugin.wasm",
   "abi": 1,
