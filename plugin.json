@@ -1,0 +1,78 @@
+{
+  "id": "postgis",
+  "name": "PostGIS",
+  "version": "0.1.0",
+  "description": "Add a PostgreSQL/PostGIS table to the map as a vector layer, read through DuckDB's postgres extension. Needs DuckDB 1.5 or later.",
+  "author": "Travis Webb",
+  "license": "MIT",
+  "entry": "plugin.wasm",
+  "abi": 1,
+  "minRustgisVersion": "0.2.0",
+  "permissions": [
+    "edit",
+    "files",
+    "network"
+  ],
+  "commands": [
+    {
+      "id": "add-table",
+      "label": "Add PostGIS\nTable",
+      "help": "Add PostgreSQL/PostGIS tables to the map as layers. First fill in the Set PostGIS Source tool (Geoprocessing pane: connection and table), then click this.",
+      "icon": "add_data",
+      "params": "{\"table\"?: \"schema.table\" (without it, the rows of the 'PostGIS Sources' table),\"connection\"?: \"host=… dbname=… user=…\" | \"postgresql://…\" | \"service=name\" (default: the PG* environment variables), \"name\"?: layer name (default: the table's), \"columns\"?: [column names] (default: all), \"geometry\"?: the geometry column to draw (default: the first), \"where\"?: DuckDB SQL condition, \"limit\"?: number of rows, \"crs\"?: \"EPSG:…\" for a geometry column without an SRID (default: longitude/latitude), \"zoom\"?: bool (default true)}"
+    }
+  ],
+  "tools": [
+    {
+      "id": "set-source",
+      "name": "Set PostGIS Source",
+      "toolbox": "PostGIS",
+      "summary": "Fill in a PostGIS table to add: connection and table. Then run Add PostGIS Table.",
+      "params": [
+        {
+          "name": "connection",
+          "label": "Connection (host=… dbname=… user=… | postgresql://… | service=name)",
+          "kind": "text",
+          "required": true,
+          "default": "host=localhost dbname=postgres user=postgres"
+        },
+        {
+          "name": "table",
+          "label": "Table (schema.table)",
+          "kind": "text",
+          "required": true
+        },
+        {
+          "name": "name",
+          "label": "Layer name (optional)",
+          "kind": "text"
+        },
+        {
+          "name": "columns",
+          "label": "Columns, comma-separated (optional; include the geometry)",
+          "kind": "text"
+        },
+        {
+          "name": "where",
+          "label": "Where, DuckDB SQL (optional)",
+          "kind": "text"
+        },
+        {
+          "name": "limit",
+          "label": "Row limit (optional)",
+          "kind": "text"
+        },
+        {
+          "name": "crs",
+          "label": "CRS, EPSG:… (optional)",
+          "kind": "text"
+        },
+        {
+          "name": "geometry",
+          "label": "Geometry column (optional)",
+          "kind": "text"
+        }
+      ]
+    }
+  ]
+}

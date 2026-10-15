@@ -1,0 +1,24 @@
+[package]
+name = "postgis"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+description = "RustGIS plugin: add a PostgreSQL/PostGIS table to the map as a layer"
+publish = false
+
+# A plugin is a WebAssembly module: build it with ./build.sh, or
+#   cargo build --release --target wasm32-unknown-unknown
+# The rlib lets `cargo test` run the SQL builder on the host.
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+rustgis-plugin = { git = "https://github.com/opengeos/rustgis-plugins", rev = "96dbc53e02bf6d52b596c6f5ee4816cfcb997b4c" }
+
+# Small, fast plugin modules. A panic aborts: RustGIS reports it as the plugin failing.
+[profile.release]
+opt-level = "s"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

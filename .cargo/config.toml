@@ -1,0 +1,4 @@
+# `cargo test` builds the cdylib for the host too, where the module's `rustgis` imports
+# (call, result, log) don't exist. Linux leaves them unresolved; macOS needs to be told to.
+[target.'cfg(target_os = "macos")']
+rustflags = ["-C", "link-arg=-undefined", "-C", "link-arg=dynamic_lookup"]
