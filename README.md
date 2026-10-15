@@ -158,3 +158,7 @@ cargo test       # the query builder, on the host
 ./e2e.sh         # runs it in rustgis-cli against a real database and writes e2e.png
                  # (RUSTGIS_CLI=…, RUSTGIS_DUCKDB_BIN=… if they aren't on the PATH)
 ```
+
+---
+
+Supported by [Landrecords](https://landrecords.us).
